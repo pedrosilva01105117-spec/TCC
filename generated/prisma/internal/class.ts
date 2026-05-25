@@ -12,7 +12,7 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "./prismaNamespace.js"
+import type * as Prisma from "./prismaNamespace"
 
 
 const config: runtime.GetPrismaClientConfig = {
@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.8.0",
   "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "sqlite",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Alunos {\n  id             Int           @id @default(autoincrement())\n  nome           String\n  idade          String\n  dataNascimento DateTime\n  email          String\n  cpf            String\n  plano          String\n  updatedAt      DateTime      @updatedAt\n  createdAt      DateTime      @default(now())\n  instrutores    instrutores[]\n}\n\nmodel instrutores {\n  id             Int      @id @default(autoincrement())\n  nome           String\n  idade          String\n  dataNascimento DateTime\n  email          String\n  cpf            String\n  especialidade  String\n  senha          String\n  admin          Boolean  @default(false)\n  updatedAt      DateTime @updatedAt\n  createdAt      DateTime @default(now())\n  alunos         Alunos[]\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Alunos\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"idade\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dataNascimento\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cpf\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"plano\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"instrutores\",\"kind\":\"object\",\"type\":\"instrutores\",\"relationName\":\"AlunosToinstrutores\"}],\"dbName\":null},\"instrutores\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"idade\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dataNascimento\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cpf\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"especialidade\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"senha\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"admin\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"alunos\",\"kind\":\"object\",\"type\":\"Alunos\",\"relationName\":\"AlunosToinstrutores\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[]"),
-  graph: "AAAA"
+  strings: JSON.parse("[\"where\",\"orderBy\",\"cursor\",\"alunos\",\"_count\",\"instrutores\",\"Alunos.findUnique\",\"Alunos.findUniqueOrThrow\",\"Alunos.findFirst\",\"Alunos.findFirstOrThrow\",\"Alunos.findMany\",\"data\",\"Alunos.createOne\",\"Alunos.createMany\",\"Alunos.createManyAndReturn\",\"Alunos.updateOne\",\"Alunos.updateMany\",\"Alunos.updateManyAndReturn\",\"create\",\"update\",\"Alunos.upsertOne\",\"Alunos.deleteOne\",\"Alunos.deleteMany\",\"having\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Alunos.groupBy\",\"Alunos.aggregate\",\"instrutores.findUnique\",\"instrutores.findUniqueOrThrow\",\"instrutores.findFirst\",\"instrutores.findFirstOrThrow\",\"instrutores.findMany\",\"instrutores.createOne\",\"instrutores.createMany\",\"instrutores.createManyAndReturn\",\"instrutores.updateOne\",\"instrutores.updateMany\",\"instrutores.updateManyAndReturn\",\"instrutores.upsertOne\",\"instrutores.deleteOne\",\"instrutores.deleteMany\",\"instrutores.groupBy\",\"instrutores.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"nome\",\"idade\",\"dataNascimento\",\"email\",\"cpf\",\"especialidade\",\"senha\",\"admin\",\"updatedAt\",\"createdAt\",\"equals\",\"not\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"contains\",\"startsWith\",\"endsWith\",\"plano\",\"every\",\"some\",\"none\",\"connectOrCreate\",\"upsert\",\"set\",\"disconnect\",\"delete\",\"connect\",\"updateMany\",\"deleteMany\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+  graph: "dxcgDQUAAEoAIC4AAEYAMC8AAAcAEDAAAEYAMDECAAAAATIBAEgAITMBAEgAITRAAEkAITUBAEgAITYBAEgAITpAAEkAITtAAEkAIUcBAEgAIQEAAAABACAPAwAATQAgLgAASwAwLwAAAwAQMAAASwAwMQIARwAhMgEASAAhMwEASAAhNEAASQAhNQEASAAhNgEASAAhNwEASAAhOAEASAAhOSAATAAhOkAASQAhO0AASQAhAQMAAHcAIA8DAABNACAuAABLADAvAAADABAwAABLADAxAgAAAAEyAQBIACEzAQBIACE0QABJACE1AQBIACE2AQBIACE3AQBIACE4AQBIACE5IABMACE6QABJACE7QABJACEDAAAAAwAgAQAABAAwAgAABQAgDQUAAEoAIC4AAEYAMC8AAAcAEDAAAEYAMDECAEcAITIBAEgAITMBAEgAITRAAEkAITUBAEgAITYBAEgAITpAAEkAITtAAEkAIUcBAEgAIQEFAAB2ACADAAAABwAgAQAACAAwAgAAAQAgAQAAAAcAIAEAAAADACABAAAAAQAgAwAAAAcAIAEAAAgAMAIAAAEAIAMAAAAHACABAAAIADACAAABACADAAAABwAgAQAACAAwAgAAAQAgCgUAAHUAIDECAAAAATIBAAAAATMBAAAAATRAAAAAATUBAAAAATYBAAAAATpAAAAAATtAAAAAAUcBAAAAAQELAAAQACAJMQIAAAABMgEAAAABMwEAAAABNEAAAAABNQEAAAABNgEAAAABOkAAAAABO0AAAAABRwEAAAABAQsAABIAMAELAAASADAKBQAAaQAgMQIAVgAhMgEAUwAhMwEAUwAhNEAAVAAhNQEAUwAhNgEAUwAhOkAAVAAhO0AAVAAhRwEAUwAhAgAAAAEAIAsAABUAIAkxAgBWACEyAQBTACEzAQBTACE0QABUACE1AQBTACE2AQBTACE6QABUACE7QABUACFHAQBTACECAAAABwAgCwAAFwAgAgAAAAcAIAsAABcAIAMAAAABACASAAAQACATAAAVACABAAAAAQAgAQAAAAcAIAUEAABkACAYAABlACAZAABoACAaAABnACAbAABmACAMLgAARQAwLwAAHgAQMAAARQAwMQIAOAAhMgEAOQAhMwEAOQAhNEAAOgAhNQEAOQAhNgEAOQAhOkAAOgAhO0AAOgAhRwEAOQAhAwAAAAcAIAEAAB0AMBcAAB4AIAMAAAAHACABAAAIADACAAABACABAAAABQAgAQAAAAUAIAMAAAADACABAAAEADACAAAFACADAAAAAwAgAQAABAAwAgAABQAgAwAAAAMAIAEAAAQAMAIAAAUAIAwDAABjACAxAgAAAAEyAQAAAAEzAQAAAAE0QAAAAAE1AQAAAAE2AQAAAAE3AQAAAAE4AQAAAAE5IAAAAAE6QAAAAAE7QAAAAAEBCwAAJgAgCzECAAAAATIBAAAAATMBAAAAATRAAAAAATUBAAAAATYBAAAAATcBAAAAATgBAAAAATkgAAAAATpAAAAAATtAAAAAAQELAAAoADABCwAAKAAwDAMAAFcAIDECAFYAITIBAFMAITMBAFMAITRAAFQAITUBAFMAITYBAFMAITcBAFMAITgBAFMAITkgAFUAITpAAFQAITtAAFQAIQIAAAAFACALAAArACALMQIAVgAhMgEAUwAhMwEAUwAhNEAAVAAhNQEAUwAhNgEAUwAhNwEAUwAhOAEAUwAhOSAAVQAhOkAAVAAhO0AAVAAhAgAAAAMAIAsAAC0AIAIAAAADACALAAAtACADAAAABQAgEgAAJgAgEwAAKwAgAQAAAAUAIAEAAAADACAFBAAATgAgGAAATwAgGQAAUgAgGgAAUQAgGwAAUAAgDi4AADcAMC8AADQAEDAAADcAMDECADgAITIBADkAITMBADkAITRAADoAITUBADkAITYBADkAITcBADkAITgBADkAITkgADsAITpAADoAITtAADoAIQMAAAADACABAAAzADAXAAA0ACADAAAAAwAgAQAABAAwAgAABQAgDi4AADcAMC8AADQAEDAAADcAMDECADgAITIBADkAITMBADkAITRAADoAITUBADkAITYBADkAITcBADkAITgBADkAITkgADsAITpAADoAITtAADoAIQ0EAAA9ACAYAABEACAZAAA9ACAaAAA9ACAbAAA9ACA8AgAAAAE9AgBDACE-AgAAAAQ_AgAAAARAAgAAAAFBAgAAAAFCAgAAAAFDAgAAAAEOBAAAPQAgGgAAQgAgGwAAQgAgPAEAAAABPQEAQQAhPgEAAAAEPwEAAAAEQAEAAAABQQEAAAABQgEAAAABQwEAAAABRAEAAAABRQEAAAABRgEAAAABCwQAAD0AIBoAAEAAIBsAAEAAIDxAAAAAAT1AAD8AIT5AAAAABD9AAAAABEBAAAAAAUFAAAAAAUJAAAAAAUNAAAAAAQUEAAA9ACAaAAA-ACAbAAA-ACA8IAAAAAE9IAA8ACEFBAAAPQAgGgAAPgAgGwAAPgAgPCAAAAABPSAAPAAhCDwCAAAAAT0CAD0AIT4CAAAABD8CAAAABEACAAAAAUECAAAAAUICAAAAAUMCAAAAAQI8IAAAAAE9IAA-ACELBAAAPQAgGgAAQAAgGwAAQAAgPEAAAAABPUAAPwAhPkAAAAAEP0AAAAAEQEAAAAABQUAAAAABQkAAAAABQ0AAAAABCDxAAAAAAT1AAEAAIT5AAAAABD9AAAAABEBAAAAAAUFAAAAAAUJAAAAAAUNAAAAAAQ4EAAA9ACAaAABCACAbAABCACA8AQAAAAE9AQBBACE-AQAAAAQ_AQAAAARAAQAAAAFBAQAAAAFCAQAAAAFDAQAAAAFEAQAAAAFFAQAAAAFGAQAAAAELPAEAAAABPQEAQgAhPgEAAAAEPwEAAAAEQAEAAAABQQEAAAABQgEAAAABQwEAAAABRAEAAAABRQEAAAABRgEAAAABDQQAAD0AIBgAAEQAIBkAAD0AIBoAAD0AIBsAAD0AIDwCAAAAAT0CAEMAIT4CAAAABD8CAAAABEACAAAAAUECAAAAAUICAAAAAUMCAAAAAQg8CAAAAAE9CABEACE-CAAAAAQ_CAAAAARACAAAAAFBCAAAAAFCCAAAAAFDCAAAAAEMLgAARQAwLwAAHgAQMAAARQAwMQIAOAAhMgEAOQAhMwEAOQAhNEAAOgAhNQEAOQAhNgEAOQAhOkAAOgAhO0AAOgAhRwEAOQAhDQUAAEoAIC4AAEYAMC8AAAcAEDAAAEYAMDECAEcAITIBAEgAITMBAEgAITRAAEkAITUBAEgAITYBAEgAITpAAEkAITtAAEkAIUcBAEgAIQg8AgAAAAE9AgA9ACE-AgAAAAQ_AgAAAARAAgAAAAFBAgAAAAFCAgAAAAFDAgAAAAELPAEAAAABPQEAQgAhPgEAAAAEPwEAAAAEQAEAAAABQQEAAAABQgEAAAABQwEAAAABRAEAAAABRQEAAAABRgEAAAABCDxAAAAAAT1AAEAAIT5AAAAABD9AAAAABEBAAAAAAUFAAAAAAUJAAAAAAUNAAAAAAQNIAAADACBJAAADACBKAAADACAPAwAATQAgLgAASwAwLwAAAwAQMAAASwAwMQIARwAhMgEASAAhMwEASAAhNEAASQAhNQEASAAhNgEASAAhNwEASAAhOAEASAAhOSAATAAhOkAASQAhO0AASQAhAjwgAAAAAT0gAD4AIQNIAAAHACBJAAAHACBKAAAHACAAAAAAAAFNAQAAAAEBTUAAAAABAU0gAAAAAQVNAgAAAAFTAgAAAAFUAgAAAAFVAgAAAAFWAgAAAAEKEgAAWAAwEwAAXAAwSwAAWQAwTAAAWgAwTQAAWwAwTgAAWwAwTwAAWwAwUAAAWwAwUQAAXQAwUgAAXgAwCTECAAAAATIBAAAAATMBAAAAATRAAAAAATUBAAAAATYBAAAAATpAAAAAATtAAAAAAUcBAAAAAQIAAAABACASAABiACADAAAAAQAgEgAAYgAgEwAAYQAgDQUAAEoAIC4AAEYAMC8AAAcAEDAAAEYAMDECAAAAATIBAEgAITMBAEgAITRAAEkAITUBAEgAITYBAEgAITpAAEkAITtAAEkAIUcBAEgAIQIAAAABACALAABhACACAAAAXwAgCwAAYAAgDC4AAF4AMC8AAF8AEDAAAF4AMDECAEcAITIBAEgAITMBAEgAITRAAEkAITUBAEgAITYBAEgAITpAAEkAITtAAEkAIUcBAEgAIQwuAABeADAvAABfABAwAABeADAxAgBHACEyAQBIACEzAQBIACE0QABJACE1AQBIACE2AQBIACE6QABJACE7QABJACFHAQBIACEJMQIAVgAhMgEAUwAhMwEAUwAhNEAAVAAhNQEAUwAhNgEAUwAhOkAAVAAhO0AAVAAhRwEAUwAhCTECAFYAITIBAFMAITMBAFMAITRAAFQAITUBAFMAITYBAFMAITpAAFQAITtAAFQAIUcBAFMAIQkxAgAAAAEyAQAAAAEzAQAAAAE0QAAAAAE1AQAAAAE2AQAAAAE6QAAAAAE7QAAAAAFHAQAAAAEDEgAAWAAwSwAAWQAwUAAAWwAwAAAAAAAKEgAAagAwEwAAbgAwSwAAawAwTAAAbAAwTQAAbQAwTgAAbQAwTwAAbQAwUAAAbQAwUQAAbwAwUgAAcAAwCzECAAAAATIBAAAAATMBAAAAATRAAAAAATUBAAAAATYBAAAAATcBAAAAATgBAAAAATkgAAAAATpAAAAAATtAAAAAAQIAAAAFACASAAB0ACADAAAABQAgEgAAdAAgEwAAcwAgDwMAAE0AIC4AAEsAMC8AAAMAEDAAAEsAMDECAAAAATIBAEgAITMBAEgAITRAAEkAITUBAEgAITYBAEgAITcBAEgAITgBAEgAITkgAEwAITpAAEkAITtAAEkAIQIAAAAFACALAABzACACAAAAcQAgCwAAcgAgDi4AAHAAMC8AAHEAEDAAAHAAMDECAEcAITIBAEgAITMBAEgAITRAAEkAITUBAEgAITYBAEgAITcBAEgAITgBAEgAITkgAEwAITpAAEkAITtAAEkAIQ4uAABwADAvAABxABAwAABwADAxAgBHACEyAQBIACEzAQBIACE0QABJACE1AQBIACE2AQBIACE3AQBIACE4AQBIACE5IABMACE6QABJACE7QABJACELMQIAVgAhMgEAUwAhMwEAUwAhNEAAVAAhNQEAUwAhNgEAUwAhNwEAUwAhOAEAUwAhOSAAVQAhOkAAVAAhO0AAVAAhCzECAFYAITIBAFMAITMBAFMAITRAAFQAITUBAFMAITYBAFMAITcBAFMAITgBAFMAITkgAFUAITpAAFQAITtAAFQAIQsxAgAAAAEyAQAAAAEzAQAAAAE0QAAAAAE1AQAAAAE2AQAAAAE3AQAAAAE4AQAAAAE5IAAAAAE6QAAAAAE7QAAAAAEDEgAAagAwSwAAawAwUAAAbQAwAAACBAAEBQYCAgMJAQQAAwEDCgABBQsAAAAABQQACRgAChkACxoADBsADQAAAAAABQQACRgAChkACxoADBsADQAABQQAEhgAExkAFBoAFRsAFgAAAAAABQQAEhgAExkAFBoAFRsAFgYCAQcMAQgNAQkOAQoPAQwRAQ0TBQ4UBg8WARAYBREZBxQaARUbARYcBRwfCB0gDh4hAh8iAiAjAiEkAiIlAiMnAiQpBSUqDyYsAicuBSgvECkwAioxAisyBSw1ES02Fw"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -45,10 +45,10 @@ async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Modul
 }
 
 config.compilerWasm = {
-  getRuntime: async () => await import("@prisma/client/runtime/query_compiler_fast_bg.sqlite.mjs"),
+  getRuntime: async () => await import("@prisma/client/runtime/query_compiler_fast_bg.sqlite.js"),
 
   getQueryCompilerWasmModule: async () => {
-    const { wasm } = await import("@prisma/client/runtime/query_compiler_fast_bg.sqlite.wasm-base64.mjs")
+    const { wasm } = await import("@prisma/client/runtime/query_compiler_fast_bg.sqlite.wasm-base64.js")
     return await decodeBase64AsWasm(wasm)
   },
 
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Alunos
+   * const alunos = await prisma.alunos.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Alunos
+ * const alunos = await prisma.alunos.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -106,6 +106,7 @@ export interface PrismaClient<
   in out OmitOpts extends Prisma.PrismaClientOptions['omit'] = undefined,
   in out ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
 > {
+  Alunos: any
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
   $on<V extends LogOpts>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
@@ -188,7 +189,25 @@ export interface PrismaClient<
     extArgs: ExtArgs
   }>>
 
-    
+      /**
+   * `prisma.alunos`: Exposes CRUD operations for the **Alunos** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Alunos
+    * const alunos = await prisma.alunos.findMany()
+    * ```
+    */
+  get alunos(): Prisma.AlunosDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.instrutores`: Exposes CRUD operations for the **instrutores** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Instrutores
+    * const instrutores = await prisma.instrutores.findMany()
+    * ```
+    */
+  get instrutores(): Prisma.instrutoresDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

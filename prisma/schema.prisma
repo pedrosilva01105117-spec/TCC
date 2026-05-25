@@ -13,14 +13,30 @@ datasource db {
 }
 
 
-model aluno {
-  id Int @id @default(autoincrement())
-  nome String
-  idade String
+model Alunos {
+  id             Int          @id @default(autoincrement())
+  nome           String
+  idade          String
   dataNascimento DateTime
-  email String
-  cpf String
-  plano String
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
+  email          String
+  cpf            String
+  plano          String
+  updatedAt      DateTime     @updatedAt
+  createdAt      DateTime     @default(now())
+  instrutores    instrutores[]
+}
+
+model instrutores {
+  id             Int      @id @default(autoincrement())
+  nome           String
+  idade          String
+  dataNascimento DateTime
+  email          String
+  cpf            String
+  especialidade  String
+  senha          String
+  admin          Boolean  @default(false)
+  updatedAt      DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  alunos         Alunos[]
 }

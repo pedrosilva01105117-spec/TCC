@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models.js'
-export type * from './prismaNamespace.js'
+export type * from '../models'
+export type * from './prismaNamespace'
 
 export const Decimal = runtime.Decimal
 
@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-
+  Alunos: 'Alunos',
+  instrutores: 'instrutores'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -65,4 +66,44 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const AlunosScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  idade: 'idade',
+  dataNascimento: 'dataNascimento',
+  email: 'email',
+  cpf: 'cpf',
+  plano: 'plano',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type AlunosScalarFieldEnum = (typeof AlunosScalarFieldEnum)[keyof typeof AlunosScalarFieldEnum]
+
+
+export const InstrutoresScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  idade: 'idade',
+  dataNascimento: 'dataNascimento',
+  email: 'email',
+  cpf: 'cpf',
+  especialidade: 'especialidade',
+  senha: 'senha',
+  admin: 'admin',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type InstrutoresScalarFieldEnum = (typeof InstrutoresScalarFieldEnum)[keyof typeof InstrutoresScalarFieldEnum]
+
+
+export const SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+} as const
+
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 

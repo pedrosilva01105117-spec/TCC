@@ -8,4 +8,6 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './commonInputTypes.js'
+export type * from './models/Alunos'
+export type * from './models/instrutores'
+export type * from './commonInputTypes'
